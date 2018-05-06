@@ -6,8 +6,10 @@
 
 # 导入机器学习linear_model库
 from sklearn import linear_model
+from sklearn import datasets
+
 # 导入交叉验证库
-from sklearn import cross_validation
+from sklearn import model_selection
 # 导入数值计算库
 import numpy as np
 # 导入科学计算库
@@ -15,16 +17,19 @@ import pandas as pd
 # 导入图表库
 import matplotlib.pyplot as plt
 
+iris = datasets.load_iris() # 导入数据集
+
+
 # 读取数据并创建数据表，名称为cost_and_click
-cost_and_click = pd.DataFrame(pd.read_excel('cost_and_click.xlsx'))
+cost_and_click_excel_data = pd.DataFrame(pd.read_excel('cost_and_click.xlsx'))
 
 # 查看数据表前5行的内容
-print(cost_and_click.head())
+print(cost_and_click_excel_data.head())
 
 # 将广告成本设为自变量X
-X = np.array(cost_and_click[['cost']])
+X = np.array(cost_and_click_excel_data[['cost']])
 # 将点击量设为因变量Y
-Y = np.array(cost_and_click['click'])
+Y = np.array(cost_and_click_excel_data['click'])
 # 查看自变量和因变量的行数
 X.shape, Y.shape
 
@@ -44,7 +49,7 @@ plt.grid(color='#95a5a6', linestyle='--', linewidth=1, axis='both', alpha=0.4)
 # plt.show()
 
 # 将原始数据通过随机方式分割为训练集和测试集，其中测试集占比为40%
-X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, Y, test_size=0.4, random_state=0)
+X_train, X_test, y_train, y_test = model_selection.train_test_split(X, Y, test_size=0.4, random_state=0)
 
 # 查看训练集数据的行数
 X_train.shape, y_train.shape

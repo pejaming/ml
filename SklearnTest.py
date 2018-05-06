@@ -91,7 +91,7 @@ model.fit(X_train, y_train)
 # 模型预测
 print(model.predict(X_test))
 
-# 获得这个模型的参数
+# 获得这个模型的参数1 
 model.get_params()
 # 为模型进行打分
 #model.score(data_X, data_y) # 线性回归：R square； 分类问题： acc
